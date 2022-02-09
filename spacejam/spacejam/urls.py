@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls.conf import include
 from django.views import generic
+from rest_framework.routers import DefaultRouter
+
+from spacejam import viewsets
+
+router = DefaultRouter()
+router.register("spaces", viewsets.SpaceViewSet)
 
 
 class IndexView(generic.TemplateView):
@@ -29,4 +36,5 @@ class IndexView(generic.TemplateView):
 urlpatterns = [
     path("", IndexView.as_view()),
     path("admin/", admin.site.urls),
+    path("api/", include((router.urls))),
 ]

@@ -3,3 +3,6 @@ django
 djangorestframework
 markdown
 django-filter
+dj_database_url
+psycopg2
+pillow
