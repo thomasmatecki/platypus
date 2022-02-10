@@ -1,16 +1,22 @@
-<div class="form-control">
-  <input type="text" placeholder="Search" 
-         class="input input-primary input-bordered rounded-l-none">
-  <div class="flex flex-wrap">
-    <span>within</span>
-    <select class="select select-bordered select-primary rounded-r-none">
-      <option disabled="disabled" selected="selected">Choose your superpower</option> 
-      <option>telekinesis</option> 
-      <option>time travel</option> 
-      <option>invisibility</option>
-    </select>
-    <div class="divider lg:divider-vertical">of</div> 
-    <input type="text" placeholder="Zip Code or Place" 
-           class="input input-primary input-bordered rounded-l-none">
-  </div>
-</div> 
+{% extends "base.jinja" %}
+{% block main_content %}
+<div class="px-16">
+  <div class="form-control">
+          <input type="text" placeholder="Search" 
+             class="input input-primary input-bordered rounded-b-none">
+    <div class="flex">
+      <select 
+          class="w-1/4 select select-bordered select-primary rounded-r-none rounded-t-none">
+        <option 
+          disabled="disabled" 
+          selected="selected">Distance</option> 
+        <option>1 mile</option> 
+        <option>5 miles</option> 
+        <option>10 miles</option>
+      </select>
+      <input type="text" placeholder="Zip Code or Place" 
+             class="flex-auto input input-primary input-bordered rounded-l-none rounded-t-none">
+    </div>
+  </div> 
+</div>
+{% endblock main_content %}
