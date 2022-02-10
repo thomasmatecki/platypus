@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
 from django.views import generic
+from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.routers import DefaultRouter
 
 from spacejam import viewsets
@@ -37,4 +38,8 @@ urlpatterns = [
     path("", IndexView.as_view()),
     path("admin/", admin.site.urls),
     path("api/", include((router.urls))),
+    path("spaces/", viewsets.SpaceViewSet.as_view(
+        {"get": "search"},
+        renderer_classes=[TemplateHTMLRenderer]
+    ))
 ]

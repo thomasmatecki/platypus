@@ -1,0 +1,17 @@
+<html>
+<head>
+  <link rel="stylesheet" href="/static/main.css">
+  <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+</head>
+<body>
+  <header>
+  {% include "nav.jinja" %}
+  </header>
+  <main>
+  {% block main_content %}
+  {% endblock main_content %}
+  </main>
+  <footer class="p-10 footer bg-base-200 text-base-content footer-center">
+  {% include "footer.jinja" %}
+  </footer>
+</body>

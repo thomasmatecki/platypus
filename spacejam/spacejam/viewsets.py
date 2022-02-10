@@ -9,6 +9,7 @@ from spacejam import models, serializers
 class SpaceViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.SpaceSerializer
     queryset = models.Space.objects.all()
+    template_name = 'space-list.jinja'
 
     class filterset_class(FilterSet):
         pass
@@ -19,6 +20,5 @@ class SpaceViewSet(viewsets.ModelViewSet):
             "form": filter_.form,
             "results": filter_.qs,
             "form_url": reverse("space-list", format="html"),
-            #            "list_template": self.template_name,
         }
-        return Response(data, template_name="table-iframe.jinja")
+        return Response(data, template_name="space-search.jinja")
