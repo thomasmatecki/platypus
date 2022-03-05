@@ -4,11 +4,18 @@
         <form hx-trigger="change" hx-target="#results" hx-get="/api/spaces.html/">
             <div class="form-control">
                 <input name="search"
-                       type="search"
+                       id="search-input"
+                       type="text"
+                       hx-get="/api/spaces.html"
+                       hx-trigger="keyup changed delay:500ms, search"
+                       hx-include="input[name='place'],select[name='distance']"
+                       hx-target="#search-results"
                        placeholder="Search"
-                       class="input input-primary input-bordered rounded-b-none"/>
+                       autocomplete="off"
+                       class="input input-primary rounded-b-none focus:z-10"/>
                 <div class="flex">
-                    <select class="w-1/4 select select-bordered select-primary rounded-r-none rounded-t-none">
+                    <select name="distance"
+                            class="w-1/4 select select-primary rounded-r-none rounded-t-none focus:z-10">
                         <option disabled="disabled" selected="selected">
                             Distance
                         </option>
@@ -23,12 +30,13 @@
                         </option>
                     </select>
                     <input name="place"
-                           type="search"
+                           type="text"
                            placeholder="Zip Code or Place"
-                           class="flex-auto input input-primary input-bordered rounded-l-none rounded-t-none"/>
+                            autocomplete="off"
+                           class="flex-auto input input-primary rounded-l-none rounded-t-none focus:z-10"/>
                 </div>
             </form>
         </div>
-        <div id="results">{% include "space-list.jinja" %}</div>
+        <div id="search-results">{% include "space-list.jinja" %}</div>
     </div>
 {% endblock main_content %}

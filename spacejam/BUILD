@@ -28,6 +28,7 @@ py_binary(
     srcs=glob(["**/*.py"]),
     deps=[
         requirement("django"),
+        requirement("django-filter"),
         requirement("jinja2"),
         requirement("djangorestframework"),
         requirement("dj_database_url"),

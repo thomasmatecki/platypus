@@ -28,7 +28,8 @@ bld/
 bazel-out
 bazel-bin
 bazel-testlogs
-bazel-verbose-succotash
+bazel-platypus
+bazel-workspace
 .vscode/
 
 

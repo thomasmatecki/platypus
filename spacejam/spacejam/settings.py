@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "django_filters",
     "spacejam",
 ]
 
@@ -80,7 +81,7 @@ WSGI_APPLICATION = "spacejam.wsgi.application"
 
 DATABASES = {
     "default": dj_database_url.config(
-        default="postgres://postgres:password@172.17.0.3:5432/postgres",
+        default="postgres://postgres:password@postgresql:5432/postgres",
         conn_max_age=600,
     )
 }
@@ -117,7 +118,7 @@ REST_FRAMEWORK = {
         "rest_framework.renderers.TemplateHTMLRenderer",
     ],
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 100,
     "DEFAULT_PARSER_CLASSES": [
         "rest_framework.parsers.JSONParser",
@@ -126,7 +127,5 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
         #        "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
     ],
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
-    ],
+    "DEFAULT_PERMISSION_CLASSES": [],
 }
