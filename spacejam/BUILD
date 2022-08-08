@@ -1,15 +1,14 @@
-load("@python_deps//:requirements.bzl", "entry_point", "requirement")
-load("@io_bazel_rules_docker//python3:image.bzl", "py3_image")
+load("@python_deps//:requirements.bzl", "requirement")
 load("@npm//tailwindcss:index.bzl", "tailwindcss")
 
 filegroup(
-    name="templates",
-    srcs=glob(["**/jinja2/**/*.jinja"]),
+    name = "templates",
+    srcs = glob(["**/jinja2/**/*.jinja"]),
 )
 
 tailwindcss(
-    name="tailwind",
-    args=[
+    name = "tailwind",
+    args = [
         "-c",
         "$(location tailwind.config.js)",
         "-i",
@@ -19,14 +18,28 @@ tailwindcss(
         "-o",
         "$(@D)/main.css",
     ],
-    data=["input.css", "tailwind.config.js", "@npm//daisyui", ":templates"],
-    output_dir=True,
+    data = [
+        "input.css",
+        "tailwind.config.js",
+        ":templates",
+        "@npm//daisyui",
+    ],
+    output_dir = True,
 )
 
 py_binary(
-    name="manage",
-    srcs=glob(["**/*.py"]),
-    deps=[
+    name = "manage",
+    srcs = glob(["**/*.py"]),
+    data = [
+        ":tailwind",
+        ":templates",
+        "@my_repo//:files",
+    ],
+    env = {
+        "CSS_DIRECTORY": "$(location :tailwind)",
+    },
+    deps = [
+        # All of these are added to PYTHONPATH
         requirement("django"),
         requirement("django-filter"),
         requirement("jinja2"),
@@ -35,8 +48,4 @@ py_binary(
         requirement("psycopg2"),
         requirement("pillow"),
     ],
-    env={
-        "CSS_DIRECTORY": "$(location :tailwind)",
-    },
-    data=[":tailwind", ":templates"],
 )

@@ -10,6 +10,7 @@ class SpaceViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.SpaceSerializer
     queryset = models.Space.objects.all()
     template_name = 'space-list.jinja'
+    ordering = ["id"]
 
     class filterset_class(FilterSet):
         pass

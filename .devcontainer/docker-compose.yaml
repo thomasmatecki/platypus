@@ -1,11 +1,9 @@
 version: "3.3"
 services:
   devcontainer:
-      # Using a Dockerfile is optional, but included for completeness.
       build: 
         context: .
         dockerfile: Dockerfile
-        # [Optional] You can use build args to set options. e.g. 'VARIANT' below affects the image in the Dockerfile
         args: 
           VARIANT: "3.9-bullseye"
           NODE_VERSION: "lts/*"
